@@ -1,0 +1,29 @@
+<mat-form-field>
+    <mat-label>First Name</mat-label>
+    <input type="text" matInput [formControl]="form.firstName">
+    <mat-error *ngIf="form.firstName.hasError('required')">
+        First name <strong>required</strong>
+    </mat-error>
+</mat-form-field>
+
+<mat-form-field>
+    <mat-label>Last Name</mat-label>
+    <input type="text" matInput [formControl]="form.lastName">
+    <mat-error *ngIf="form.lastName.hasError('required')">
+      Last name <strong>required</strong>
+    </mat-error>
+</mat-form-field>
+
+<mat-form-field>
+    <mat-label>Email</mat-label>
+    <input type="text" matInput [formControl]="form.email">
+    <mat-error *ngIf="form.email.hasError('required')">
+      Email <strong>required</strong>
+    </mat-error>
+    <mat-error *ngIf="form.email.hasError('email')">
+        Please enter a valid <strong>email</strong>
+    </mat-error>
+</mat-form-field>
+
+
+<app-address></app-address>

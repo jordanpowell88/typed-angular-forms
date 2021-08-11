@@ -1,0 +1,42 @@
+import {
+  AbstractControlOptions,
+  AsyncValidatorFn,
+  ValidatorFn,
+} from '@angular/forms';
+import { TypedFormArray, TypedFormGroup } from './models';
+
+export interface FormConfig<T> {
+  controls: {
+    [P in keyof T]:
+      | (
+          | T[P]
+          | TypedFormGroup<T>
+          | TypedFormGroup<T[P]>
+          | TypedFormArray<T>
+          | TypedFormArray<T[P]>
+        )
+      | [
+          (
+            | T[P]
+            | TypedFormGroup<T>
+            | TypedFormGroup<T[P]>
+            | TypedFormArray<T>
+            | TypedFormArray<T[P]>
+          ),
+          ValidatorFn | ValidatorFn[] | null
+        ]
+      | [
+          (
+            | T[P]
+            | TypedFormGroup<T>
+            | TypedFormGroup<T[P]>
+            | TypedFormArray<T>
+            | TypedFormArray<T[P]>
+          ),
+          ValidatorFn | ValidatorFn[] | null,
+          AsyncValidatorFn | AsyncValidatorFn[] | null
+        ];
+  };
+  validatorOrOpts?: ValidatorFn | ValidatorFn[] | AbstractControlOptions | null;
+  asyncValidator?: AsyncValidatorFn | AsyncValidatorFn[] | null;
+}
